@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link rel='stylesheet' href='../template/assets/css/fonts.googleapis.css'>
+    <link rel="stylesheet" href="../template/bower_components/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="../template/assets/css/app.css" />
+    <script src="../template/js/createjs-2015.05.21.min.js"></script>
+    <script src="../template/js/easeljs-0.7.0.min.js"></script>
+    <script src="../template/bower_components/angular/angular.min.js"></script>
+    <script src="../template/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="../template/bower_components/angular-aria/angular-aria.js"></script>
+    <script src="../template/bower_components/angular-fullscreen/angular-fullscreen.js"></script>
+    <script src="../template/js/Gettext.js"></script>
+    <script type="text/javascript" src="../template/bower_components/angular-material/angular-material.js"></script>
+    <script src="../template/js/getlanguage.js"></script>
+    <script src="./src/user_controller.js"></script>
+	<script src="./src/view.js"></script>
+    <script src="./src/experiment.js"></script>
+	<script type="text/javascript">
+        angular
+            .module('starterApp', ['ngMaterial', 'users'])
+            .config(function($mdThemingProvider, $mdIconProvider) {
+                $mdIconProvider
+                    .icon("menu", "../template/assets/svg/menu.svg", 24)
+                    .icon("fullscreen", "../template/assets/icons/Icon3.svg", 24)
+                    .icon("help", "../template/assets/icons/Icon2.svg", 24);
+                $mdThemingProvider.theme('default')
+                    .primaryPalette('blue')
+                    .accentPalette('red');
+            });
+    </script>
+</head>
+
+<body style="background-color: #f2f2f2;" ng-app="starterApp" ng-controller="UserController as ul">
+	<md-toolbar class="md-toolbar-tools" id="main">
+		<md-button class="md-icon-button" hide-gt-md ng-click="ul.toggleList()" aria-label="Show User List">
+			<md-icon md-svg-icon="menu" ></md-icon>
+		</md-button>
+		<!-- //Experiment title gives here//   -->
+		<h1 flex="" layout="row" class="expTitle" id="expTitle">{{ heading }}</h1>
+		<md-button class="md-icon-button" aria-label="help" ng-click="showActionToast()">
+		  <md-icon md-svg-icon="help"></md-icon>
+		</md-button>
+		<md-button class="md-icon-button" aria-label="fullscreen" ng-click="goFullscreen()">
+		  <md-icon md-svg-icon="fullscreen"></md-icon>
+		</md-button>
+	</md-toolbar>
+
+	<md-content flex layout="row" style="background-color: #f2f2f2;">    
+		<md-content  id="content" layout="column"  style="background-color: #f2f2f2;" md-swipe-right="toggleSidenav()">
+			<canvas id="demoCanvas" width="700" height="700" align="center" layout-fill experiment></canvas>
+			<div id="Copyright" layout="row" layout-align="center end">{{copyright}}</div>
+		</md-content>
+
+		<md-sidenav class="site-sidenav md-sidenav-left" md-component-id="right" md-is-locked-open="$mdMedia('gt-md')" md-swipe-left="toggleSidenav()">
+			<div>  
+				<md-button id="variables" class="md-raised md-primary toolbarbutton subTitle" ng-click="toggle1()">{{variables}}
+				<span aria-hidden="true">
+					<md-icon md-svg-src="md-toggle-arrow"  aria-hidden="true" ng-animate="{enter: 'rotate', leave: 'rotateCounterwise'}" ng-class="{true: 'rotate', false: 'rotateCounterwise'}[isActive1]" ></md-icon>
+				</span> 
+				</md-button>
+				
+				<!-- Show variables tab   -->				
+				<div ng-hide="showVariables" class="div">	
+					<!-- Insert dropdown label for Select Medium -->
+					<md-content id="selectMedium" class="md-title selectable" layout-padding>{{medium_label}}</md-content>
+					<!-- Insert dropdown box -->
+					<md-content class="md-padding" id="bacteriaName" >
+						<md-select aria-label="bacteriaLbl" ng-model="medium_Mdl" ng-change="setMedium()">
+						<md-option ng-repeat="x in mediumArray" value="{{ x.type }}">{{ x.optionsMedium}}</md-option>
+						</md-select>
+					</md-content>
+					<!-- Source direction change dropdown -->
+					<!-- Insert dropdown label for Select source Direction -->
+					<md-content id="selectDirection" class="md-title selectable" layout-padding>{{source_direction_label}}</md-content>
+					<!-- Insert dropdown box -->
+					<md-content class="md-padding" >
+						<md-select aria-label="sourceLbl" ng-model="source_Mdl" ng-change="setsourceDirection()">
+						<md-option ng-repeat="x in sourceArray" value="{{ x.type }}">{{ x.optionsSource }}</md-option>
+						</md-select>
+					</md-content>
+					<!-- Receiver direction change dropdown -->
+					<!-- Insert dropdown label for Select Receiver Direction -->
+					<md-content id="selectDirection" class="md-title selectable" layout-padding>{{receiver_direction_label}}</md-content>
+					<!-- Insert dropdown box -->
+					<md-content class="md-padding" >
+						<md-select aria-label="receivereLbl" ng-model="destination_Mdl" ng-change="setReceiverDirection()">
+						<md-option ng-repeat="x in destinationArray" value="{{ x.type }}">{{ x.optionsDestination }}</md-option>
+						</md-select>
+					</md-content>
+					<!-- Insert slider label for source velocity -->
+					<md-content class="md-title selectable" layout-padding id="sourceLbl">{{source_velocity_label}} : {{source_velocity_value}} {{velocity_unit}}</md-content>
+					<!-- Insert slider -->
+					<div layout>      
+						<md-slider flex md-discrete ng-model="source_velocity_value" ng-disabled="disable_ctrls" step="1" min="0" max="1200" aria-label="rating" ng-change="setSourceVelocity();"></md-slider>        
+					</div>
+					
+					<!-- Insert slider label for detector velocity -->
+					<md-content class="md-title selectable" layout-padding id="destinationLbl">{{detector_velocity_label}} : {{detector_velocity_value}} {{velocity_unit}}</md-content>
+					<!-- Insert slider -->
+					<div layout>      
+						<md-slider flex md-discrete ng-model="detector_velocity_value" ng-disabled="disable_ctrls" step="1" min="0" max="1200" aria-label="rating" ng-change="setDetectorVelocity();"></md-slider>       
+					</div>
+					
+					<!-- Insert slider label for frequency -->
+					<md-content class="md-title selectable" layout-padding id="frequencyLbl">{{source_frequency_label}} : {{source_frequency_value}} {{frequency_unit}}</md-content>
+					<!-- Insert slider -->
+					<div layout>  
+						<md-slider flex md-discrete ng-model="source_frequency_value" ng-disabled="disable_ctrls" step="1" min="100" max="200" aria-label="rating" ng-change="setSourceFrequency()"></md-slider>        
+					</div>
+			
+					<!-- Insert Reset button -->
+					<section layout="row" layout-align="center center">
+					<md-button class="md-raised" id="reset" ng-click="resetExp();" >{{reset}}</md-button>
+					</section> 
+				</div>
+				
+				<!-- Result tab -->
+				<md-button id="result" class="md-raised md-primary toolbarbutton subTitle" ng-click="toggle()">{{result}} 
+					<span aria-hidden="true">
+						<md-icon md-svg-src="md-toggle-arrow" aria-hidden="true" ng-animate="{enter: 'rotate', leave: 'rotateCounterwise'}" ng-class="{true: 'rotate', false: 'rotateCounterwise'}[isActive]" ></md-icon>
+					</span> 
+				</md-button>
+				<!-- Insert result label --> 
+				<div ng-hide="showValue" class="div">
+				<md-content class="md-title selectable" layout-padding>{{source_frequency_label}} : {{source_frequency_value}} {{frequency_unit}}</md-content>
+				<md-content class="md-title selectable" layout-padding>{{detected_frequency_label}} : {{detected_frequency_value}} {{frequency_unit}}</md-content>
+				</div>	
+			</div> 
+		</md-sidenav>
+	</md-content>
+</body>
+<script src="../template/js/loading.js"></script>
+<script  async="async">
+    if(navigator.serviceWorker) {
+      navigator
+        .serviceWorker
+        .register('service_worker_Doppler_Effect.js')
+        .then(function(r) {
+          console.log('NW  App now available offline');
+        })
+        .catch(function(e) {
+          console.log('NW App NOT available offline');
+          console.log(e);
+        });
+    } else {
+      console.log('Service workers are not supported');
+    }   
+</script>	
+</html>
