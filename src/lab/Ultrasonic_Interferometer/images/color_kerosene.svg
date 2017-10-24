@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Selected_Items" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" width="97px" height="238.6px" viewBox="0 0 97 238.6" enable-background="new 0 0 97 238.6" xml:space="preserve">
+<symbol  id="Cator_oil" viewBox="0 -238.6 97 238.6">
+	<g id="Layer_1_2_">
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="0" y1="-119.2998" x2="97" y2="-119.2998">
+			<stop  offset="0" style="stop-color:#E6B91E"/>
+			<stop  offset="0.4863" style="stop-color:#F1C420;stop-opacity:0.502"/>
+			<stop  offset="1" style="stop-color:#CD9F03"/>
+		</linearGradient>
+		<polygon fill-rule="evenodd" clip-rule="evenodd" fill="url(#SVGID_1_)" points="97,0 97,-238.6 0,-238.6 0,0 		"/>
+	</g>
+</symbol>
+<use xlink:href="#Cator_oil"  width="97" height="238.6" id="castor" y="-238.6" transform="matrix(1 0 0 -1 0 0)" overflow="visible"/>
+</svg>

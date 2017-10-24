@@ -1,0 +1,222 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: d\n"
+"POT-Creation-Date: 2017-08-07 09:54+0530\n"
+"PO-Revision-Date: 2017-10-13 11:13+0530\n"
+"Last-Translator: \n"
+"Language-Team: d\n"
+"Language: hi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;gt.gettext\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: view.js:223
+msgid "help1"
+msgstr "ड्रॉपडाउन मेनू से माध्यम चुनें"
+
+#: view.js:223
+msgid "help2"
+msgstr "स्लाइडर का उपयोग करके आवृत्ति की सीमा निर्धारित करें"
+
+#: view.js:223
+msgid "help3"
+msgstr "डिवाइस पर पावर"
+
+#: view.js:223
+msgid "help4"
+msgstr "लाभ सेट करें"
+
+#: view.js:223
+msgid "help5"
+msgstr "एडीजे सेट करें"
+
+#: view.js:223
+msgid "help6"
+msgstr "ग्राफ़ दिखाने के लिए \"ग्राफ़ दिखाएं\" चेक बॉक्स पर क्लिक करें।"
+
+#: view.js:223
+msgid "help7"
+msgstr "क्रॉस सेक्शन दिखाने के लिए \"शो क्रॉस सेक्शन दिखाएं\" चेक बॉक्स पर क्लिक करें।"
+
+#: view.js:223
+msgid "help8"
+msgstr "वर्नर कैलीपर पढ़ने के लिए बाएं या दाएं तीर पर क्लिक करें"
+
+#: view.js:223
+msgid "help9"
+msgstr "प्रयोग को रीसेट करने के लिए रीसेट पर क्लिक करें।"
+
+#: view.js:223
+msgid "Next"
+msgstr "आगामी"
+
+#: view.js:223
+msgid "Close"
+msgstr "बंद करे"
+
+#: view.js:224
+msgid "Ultrasonic Interferometer"
+msgstr "अल्ट्रासोनिक इंटरफेरोमीटर"
+
+#: view.js:225
+msgid "Variables"
+msgstr "चर"
+
+#: view.js:226
+msgid "Choose medium :"
+msgstr "माध्यम चुनें:"
+
+#: view.js:227
+msgid "Frequency of wave(MHz) :"
+msgstr "लहर की आवृत्ति (मेगाहर्टज):"
+
+#: view.js:228 view.js:335
+msgid "Power on"
+msgstr "पावर ऑन"
+
+#: view.js:229
+msgid "Show cross section"
+msgstr "पार अनुभाग दिखाएं"
+
+#: view.js:230
+msgid "Show graph"
+msgstr "ग्राफ़ दिखाएं"
+
+#: view.js:231
+msgid "Water_one"
+msgstr "जल (ρ = 996.458 किलोग्राम / मी)"
+
+#: view.js:232
+msgid "Show result"
+msgstr "परिणाम दिखाओ"
+
+#: view.js:233
+msgid "Velocity of ultrasonic wave(m/s):"
+msgstr "अल्ट्रासोनिक तरंग की गति (एम / एस):"
+
+#: view.js:234
+msgid "Adiabatic compressibility: "
+msgstr "एडियाबैटिक कॉम्बिटाइटी (β):"
+
+#: view.js:235
+msgid "ADJ reading should be greater than the GAIN"
+msgstr "एडीजे पढ़ना लाभ से अधिक होना चाहिए"
+
+#: view.js:236
+msgid "copyright"
+msgstr "कॉपीराइट © अमृता विश्वविद्यालय 200 9 - 2015"
+
+#: view.js:237
+msgid "Reset"
+msgstr "रीसेट"
+
+#: view.js:238
+msgid "Distance(mm)"
+msgstr "वर्तमान"
+
+#: view.js:239
+msgid "Current"
+msgstr "वर्तमान"
+
+#: view.js:242
+msgid "Water"
+msgstr "जल (ρ = 996.458 किलोग्राम / मी)"
+
+#: view.js:245
+msgid "Acetone"
+msgstr "एसीटोन (ρ = 790 किलोग्राम / एमई)"
+
+#: view.js:248
+msgid "Kerosene"
+msgstr "केरोसीन (ρ = 810 किलोग्राम / मी)"
+
+#: view.js:251
+msgid "Castor Oil"
+msgstr "कास्टर ऑयल (ρ = 956.14 किलोग्राम / मी)"
+
+#: view.js:254
+msgid "Glycerine"
+msgstr "ग्लिसरीन (ρ = 1260 किलोग्राम / मी)"
+
+#~ msgid "Water)"
+#~ msgstr "Water)"
+
+#~ msgid "Resistivity by Four Probe Method"
+#~ msgstr "Resistivity by Four Probe Method"
+
+#~ msgid "Select Material :"
+#~ msgstr "Select Material :"
+
+#~ msgid "Range of Current :"
+#~ msgstr "Range of Current :"
+
+#~ msgid "Germanium"
+#~ msgstr "Germanium"
+
+#~ msgid "20 mA"
+#~ msgstr "20 mA"
+
+#~ msgid "Current (mA) :"
+#~ msgstr "Current (mA) :"
+
+#~ msgid "X1"
+#~ msgstr "x1"
+
+#~ msgid "Oven"
+#~ msgstr "Oven"
+
+#~ msgid "Cross Section"
+#~ msgstr "Cross Section"
+
+#~ msgid "Range of Oven :"
+#~ msgstr "Range of Oven :"
+
+#~ msgid "Measurements"
+#~ msgstr "Measurements"
+
+#~ msgid "Stop"
+#~ msgstr "Stop"
+
+#~ msgid "Set"
+#~ msgstr "Set"
+
+#~ msgid "Run"
+#~ msgstr "Run"
+
+#~ msgid "Wait"
+#~ msgstr "Wait"
+
+#~ msgid "RESET"
+#~ msgstr "RESET"
+
+#~ msgid "Resistivity (ohm cm) :"
+#~ msgstr "Resistivity (ohm cm) :"
+
+#~ msgid "Measure"
+#~ msgstr "Measure"
+
+#~ msgid "String Length(m):"
+#~ msgstr "String Length(m):"
+
+#~ msgid "String Radius(m):"
+#~ msgstr "String Radius(m):"
+
+#~ msgid "Temperature:"
+#~ msgstr "Temperature  (°C) :"
+
+#~ msgid "Range of Voltmeter :"
+#~ msgstr "Range of Voltmeter :"
+
+#~ msgid "Silicon"
+#~ msgstr "Silicon"
+
+#~ msgid "200 mA"
+#~ msgstr "200 mA"
+
+#~ msgid "X10"
+#~ msgstr "x10"

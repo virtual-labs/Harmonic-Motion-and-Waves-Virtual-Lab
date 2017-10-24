@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0F69C3">
+    <meta name="msapplication-TileColor" content="#0F69C3">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#0F69C3">
+    <meta name="mobile-web-app-status-bar-style" content="#0F69C3">
+    <meta name="msapplication-TileImage" content="../template/images/icons/logo_144.png">
+    <link rel=icon sizes="512x512" href="../template/images/icons/logo_512.png">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="../template/images/icons/logo_512.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../template/images/icons/logo_72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../template/images/icons/logo_144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../template/images/icons/logo_144.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="../template/images/icons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../template/images/icons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="manifest.json">
+    <link rel='stylesheet' href='../template/assets/css/fonts.googleapis.css'>
+    <link rel="stylesheet" href="../template/bower_components/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="../template/assets/css/app.css" />
+    <link rel="stylesheet" href="css/experiment.css" />
+
+    <script src="../template/js/createjs-2015.05.21.min.js"></script>
+    <script src="../template/js/easeljs-0.7.0.min.js"></script>
+    <script src="../template/bower_components/angular/angular.min.js"></script>
+    <script src="../template/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="../template/bower_components/angular-aria/angular-aria.js"></script>
+    <script src="../template/bower_components/angular-fullscreen/angular-fullscreen.js"></script>
+    <script src="../template/js/Gettext.js"></script>
+    <script type="text/javascript" src="../template/bower_components/angular-material/angular-material.js"></script>
+    <script src="../template/js/getlanguage.js"></script>
+    <script src="../template/js/canvasjs.min.js"></script>
+
+    <script src="./src/user_controller.js"></script>
+    <script src="./src/view.js"></script>
+    <script src="./src/experiment.js"></script>
+    <script src="../template/js/stopwatch.js"></script>
+    <script type="text/javascript">
+        angular
+            .module('starterApp', ['ngMaterial', 'users'])
+            .config(function($mdThemingProvider, $mdIconProvider) {
+                $mdIconProvider
+                    .icon("menu", "../template/assets/svg/menu.svg", 24)
+                    .icon("fullscreen", "../template/assets/icons/Icon3.svg", 24)
+                    .icon("help", "../template/assets/icons/Icon2.svg", 24);
+                $mdThemingProvider.theme('default')
+                    .primaryPalette('blue')
+                    .accentPalette('red');
+            });
+
+    </script>
+</head>
+
+<body style="background-color: #f2f2f2;" ng-app="starterApp" ng-controller="UserController as ul">
+    <!-- Header Section -->
+    <md-toolbar class="md-toolbar-tools" id="main">
+        <md-button class="md-icon-button" hide-gt-md ng-click="ul.toggleList()" aria-label="Show User List">
+            <md-icon md-svg-icon="menu"></md-icon>
+        </md-button>
+        <!-- //Experiment title gives here//   -->
+        <h1 flex="" layout="row" class="expTitle" id="expTitle">{{heading}}</h1>
+        <md-button class="md-icon-button" aria-label="help" ng-click="showActionToast()">
+            <md-icon md-svg-icon="help"></md-icon>
+        </md-button>
+        <md-button class="md-icon-button" aria-label="fullscreen" ng-click="goFullscreen()">
+            <md-icon md-svg-icon="fullscreen"></md-icon>
+        </md-button>
+    </md-toolbar>
+    <!-- //Header Section -->
+
+    <!-- Inner Section -->
+    <md-content flex layout="row" style="background-color: #f2f2f2;">
+
+        <!-- Canvas Section -->
+        <md-content id="content" layout="column" style="background-color: #f2f2f2;" md-swipe-right="toggleSidenav()">
+            <canvas id="demoCanvas" width="700" height="700" align="center" layout-fill experiment></canvas>
+            <md-content id="graphDiv">
+            </md-content>
+            <div id="Copyright" layout="row" layout-align="center end">{{copyright}}</div>
+        </md-content>
+        <!-- //Canvas Section -->
+        <!-- Side nav -->
+        <md-sidenav class="site-sidenav md-sidenav-left" ID="site-sidenav" md-component-id="right" md-is-locked-open="$mdMedia('gt-md')" md-swipe-left="toggleSidenav()">
+            <!-- side nav top border -->
+            <md-button id="variables" class="md-raised md-primary toolbarbutton subTitle" ng-click="toggle1()">{{variables}}
+                <span aria-hidden="true">
+						<md-icon md-svg-src="md-toggle-arrow"  aria-hidden="true" ng-animate="{enter: 'rotate', leave: 'rotateCounterwise'}" ng-class="{true: 'rotate', false: 'rotateCounterwise'}[isActive1]" ></md-icon>
+					</span>
+            </md-button>
+            <!-- //side nav top border -->
+
+            <!-- Variables Section -->
+            <div ng-hide="showVariables" class="div">
+
+                <!-- Select medium  label -->
+                <md-content id="medium" class="md-title selectable" layout-padding>{{choose_medium_lbl}}</md-content>
+                <!-- //Select frequency  label -->
+
+                <!-- Select medium dropdown box -->
+                <md-select placeholder="{{water_lbl}}" ng-model="select_Medium_mdl" ng-change="changeMedium()">
+                    <md-option class="md-title selectable" ng-repeat="x in meterial_array" value="{{ x.index }}">{{ x.Material }}</md-option>
+                </md-select>
+                <!--// Select medium dropdown box -->
+
+                <!-- Select frequency  label -->
+                <md-content id="wire" class="md-title selectable" layout-padding>{{frequency_lbl}}{{curren_Frequency}}</md-content>
+                <!-- //Select frequency  label -->
+
+
+                <!-- Current (mA) slider -->
+                <div layout>
+                    <md-slider flex ng-change="changeFrequency()" ng-model="curren_Frequency" step="{{curren_frequency_steps}}" min="{{curren_frequency_min}}" max="{{curren_frequency_max}}" aria-label="rating"></md-slider>
+
+                </div>
+
+                <div class=".selectable .md-title, .md-toolbar-tools" style="display:inline;     font-size: 16px;">{{initial_frequency}}</div>
+                <div class=".selectable .md-title, .md-toolbar-tools" style="float:right;     font-size: 16px;     padding-right: 2%;">{{final_frequency}}</div>
+                <!-- //Current (mA) slider -->
+
+                <!-- Reset  Button   -->
+                <section layout="row" layout-align="center center">
+                    <md-button class="md-raised" id="stop_btn" ng-click="powerOn_reset();">{{btn_labl}}</md-button>
+
+                </section>
+                <!-- //Reset  Button   -->
+
+
+                <!-- Show cross-section  check box -->
+                <md-checkbox class="md-title selectable" ng-model="CrossSection" aria-label="Checkbox 1" id="CrossSection" ng-change="showCrossSection();">{{cross_section_lbl}}</md-checkbox>
+                <!-- //Show cross-section  check box -->
+
+
+                <!-- Show graph  check box -->
+                <md-checkbox class="md-title selectable" ng-model="graphHide" aria-label="Checkbox 1" id="CrossSection" ng-change="showHide_graph()">{{show_graph_lbl}}</md-checkbox>
+                <!-- //Show graph check box -->
+
+                <md-content id="error_section" class="md-title selectable" layout-padding>
+                    <md-content id="readingIcon" class="md-title selectable" layout-padding><img id="error_icon2" src="images/error_icon.svg" /></md-content>
+                    <md-content id="readingTxt" class="md-title selectable" layout-padding>{{error_lbl}}</md-content>
+                </md-content>
+
+
+            </div>
+            <!-- // Variables Section -->
+
+            <!-- Result Section   -->
+            <md-button id="result" class="md-raised md-primary toolbarbutton subTitle" ng-click="toggle()">{{result}}
+                <span aria-hidden="true">
+					<md-icon md-svg-src="md-toggle-arrow"   aria-hidden="true" ng-animate="{enter: 'rotate', leave: 'rotateCounterwise'}" ng-class="{true: 'rotate', false: 'rotateCounterwise'}[isActive]" ></md-icon>
+					</span>
+            </md-button>
+            <!-- //inset result label // -->
+            <div ng-hide="showValue" class="div">
+
+                <!-- Show cross-section  check box -->
+                <md-checkbox ng-disabled="showResult_btn_disable" class="md-title selectable" ng-model="showResult_mdl" aria-label="Checkbox 1" id="CrossSection" ng-change="showHideResult();">{{showresult_lbl}}</md-checkbox>
+                <!-- //Show cross-section  check box -->
+
+                <md-content id="resultSection" class="md-title selectable" layout-padding>{{result_one_lbl}} {{result_one}}</md-content>
+
+                <md-content id="resultSection_two" class="md-title selectable" layout-padding>{{result_two_lbl}} {{result_two}}</md-content>
+            </div>
+            <!-- //Result Section   -->
+        </md-sidenav>
+        <!-- //Side nav -->
+    </md-content>
+    <!--// Inner Section -->
+</body>
+<script src="../template/js/loading.js"></script>
+<script async="async">
+    if (navigator.serviceWorker) {
+        navigator
+            .serviceWorker
+            .register('service_worker_Ultrasonic_Interferometer.js')
+            .then(function(r) {
+                console.log('NW  App now available offline');
+            })
+            .catch(function(e) {
+                console.log('NW App NOT available offline');
+                console.log(e);
+            });
+    } else {
+        console.log('Service workers are not supported');
+    }
+
+</script>
+
+</html>
