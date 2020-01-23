@@ -5,7 +5,7 @@ build-www=/var/www
 
 theme=blue-icon
 
-all:  help-dir 
+all:patch-analytics help-dir 
 
 patch-analytics:
 	git clone https://github.com/virtual-labs/vlabs-analytics.git
